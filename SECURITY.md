@@ -62,7 +62,7 @@ Bu güvenlik politikası MIT Lisansı kapsamında lisanslanmıştır. Detaylar i
 ## 📞 İletişim
 
 Güvenlikle ilgili sorularınız için:
-- Email: [security@yks-ai.vercel.app](mailto:ogulcanozturk72@gmail.com)
+- Email: [ogulcanozturk72@gmail.com](mailto:ogulcanozturk72@gmail.com)
 - GitHub: [@ogulcan-dev](https://github.com/ogulcan-dev)
 
 ---
