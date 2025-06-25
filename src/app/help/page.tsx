@@ -336,7 +336,7 @@ export default function HelpPage() {
 const faqs = [
   {
     question: "Platform nasıl çalışıyor?",
-    answer: "Sadece soru görselini yükleyin ve hangi dersten olduğunu seçin. Google Gemini AI görseli analiz eder, soruyu okur ve MEB müfredatına uygun detaylı çözüm sunar. Tüm işlem 30 saniye içinde tamamlanır.",
+    answer: "Sadece soru görselini yükleyin ve hangi dersten olduğunu seçin. Yapay Zeka görseli analiz eder, soruyu okur ve MEB müfredatına uygun detaylı çözüm sunar. Tüm işlem 30 saniye içinde tamamlanır.",
     tags: ["Genel", "Kullanım"]
   },
   {
@@ -356,7 +356,7 @@ const faqs = [
   },
   {
     question: "Çözümler ne kadar güvenilir?",
-    answer: "Google Gemini AI en güncel ve güçlü görsel AI modellerinden biridir. Çözümler MEB müfredatına uygun şekilde tasarlanmıştır. Ancak önemli sınavlar öncesi çözümleri kontrol etmenizi öneririz.",
+    answer: "Dört farklı Yapay Zeka modeli kullanılmaktadır. Çözümler MEB müfredatına uygun şekilde tasarlanmıştır. Ancak önemli sınavlar öncesi çözümleri kontrol etmenizi öneririz.",
     tags: ["Güvenilirlik", "AI"]
   },
   {

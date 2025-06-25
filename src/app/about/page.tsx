@@ -285,10 +285,10 @@ const technologies = [
     description: "React tabanlı modern web framework'ü, server-side rendering ve optimizasyon özelliklerile."
   },
   {
-    name: "Google Gemini",
+    name: "4 Farklı Yapay Zeka Modeli",
     category: "AI & Vision",
     icon: "🤖",
-    description: "Google'ın güçlü AI modeli, görsel analiz ve doğal dil işleme yetenekleri."
+    description: "Güçlü Yapay Zeka modelleri, görsel analiz ve doğal dil işleme yetenekleri."
   },
   {
     name: "Tailwind CSS",
@@ -320,7 +320,7 @@ const capabilities = [
   {
     icon: Camera,
     title: "Gelişmiş Görsel Analizi",
-    description: "Google Gemini AI'ın güçlü görsel işleme yetenekleri ile matematik formüllerinden tarih haritalarına kadar her türlü soru görselini okur ve analiz eder.",
+    description: "Yapay Zeka güçlü görsel işleme yetenekleri ile matematik formüllerinden tarih haritalarına kadar her türlü soru görselini okur ve analiz eder.",
     tags: ["OCR", "AI Vision", "Çoklu Format"]
   },
   {
@@ -363,7 +363,7 @@ const timeline = [
   },
   {
     title: "AI Entegrasyonu",
-    description: "Google Gemini API entegre edildi, görsel işleme ve soru çözme altyapısı kuruldu.",
+    description: "4 farklı Yapay Zeka Modeli entegre edildi, görsel işleme ve soru çözme altyapısı kuruldu.",
     duration: "Gün 1"
   },
   {

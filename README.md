@@ -1,6 +1,14 @@
 # YKS Görsel Soru Çözüm AI'sı 📸✨
 
-**Sadece görsel yükle, AI çözsün!** MEB müfredatına uygun YKS soru çözüm asistanı. Görsel yükleme ile tamamen otomatik çözüm alma sistemi.
+<div align="center">
+  <img src="public/screenshot.png" alt="YKS Görsel AI Screenshot" width="100%" />
+</div>
+
+YKS-AI, üniversite sınavına hazırlanan öğrenciler için geliştirilmiş yapay zeka destekli bir soru çözüm asistanıdır. Soru görsellerini yükleyerek anında detaylı çözüm ve açıklamalar alabilirsiniz. Gemini, Claude, GPT-4V ve Ollama gibi güçlü AI modellerini kullanarak, TYT ve AYT sorularını adım adım çözer. MEB müfredatına uygun, ücretsiz ve kullanıcı dostu bir eğitim aracıdır.
+
+**🎯 Nasıl Çalışır?** Sadece soru görselini yükleyin, Google Gemini AI anında analiz edip MEB müfredatına uygun detaylı çözüm sunsun. 9 farklı ders için özel optimizasyon!
+
+✨ 🌟 **[GitHub](https://github.com/ogulcan-dev/yks-ai)**
 
 ## 🖼️ Özellikler
 
@@ -155,8 +163,8 @@ MIT License - Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
 ## 📞 İletişim
 
-- Sorularınız için [issue açın](../../issues)
-- Önerileriniz için [pull request gönderin](../../pulls)
+- Sorularınız için [issue açın](https://github.com/ogulcan-dev/yks-ai/issues)
+- Önerileriniz için [pull request gönderin](https://github.com/ogulcan-dev/yks-ai/pulls)
 - Güvenlik bildirimleri için [security.md](SECURITY.md) dosyasına bakın
 
 ---

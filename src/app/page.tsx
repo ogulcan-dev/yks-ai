@@ -112,7 +112,7 @@ export default function LandingPage() {
               </span>
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto animate-slide-up">
-              Sadece soru görselini yükleyin, Google Gemini AI anında analiz edip MEB müfredatına uygun 
+              Sadece soru görselini yükleyin, Yapay Zeka anında analiz edip MEB müfredatına uygun 
               detaylı çözüm sunsun. 9 farklı ders için özel optimizasyon!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
@@ -341,7 +341,7 @@ export default function LandingPage() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Teknoloji</h3>
               <div className="space-y-2 text-gray-400">
-                <div>🤖 Google Gemini AI</div>
+                <div>🤖 4 Farklı Yapay Zeka Modeli</div>
                 <div>⚡ Next.js 15</div>
                 <div>🎨 Tailwind CSS</div>
                 <div>📱 Responsive Design</div>
@@ -353,7 +353,7 @@ export default function LandingPage() {
             <p className="mb-2">© 2025 YKS Görsel AI - MEB müfredatına uygun eğitim desteği</p>
             <p className="flex items-center justify-center gap-2">
               <Sparkles className="h-4 w-4" />
-              <span>Google Gemini AI ile güçlendirilmiştir</span>
+              <span>Yapay Zeka ile güçlendirilmiştir</span>
               <Sparkles className="h-4 w-4" />
             </p>
           </div>
@@ -367,7 +367,7 @@ const features = [
   {
     icon: Camera,
     title: "Görsel Okuma AI",
-    description: "Google Gemini ile soru görsellerini mükemmel okur, her detayı analiz eder."
+    description: "Yapay Zeka ile soru görsellerini mükemmel okur, her detayı analiz eder."
   },
   {
     icon: Zap,
@@ -404,7 +404,7 @@ const steps = [
   },
   {
     title: "AI Analiz Ediyor",
-    description: "Google Gemini AI görseli okur, soruyu analiz eder ve çözüm hazırlar.",
+    description: "Yapay Zeka görseli okur, soruyu analiz eder ve çözüm hazırlar.",
     emoji: "🤖"
   },
   {
