@@ -8,8 +8,6 @@ YKS-AI, üniversite sınavına hazırlanan öğrenciler için geliştirilmiş ya
 
 **🎯 Nasıl Çalışır?** Sadece soru görselini yükleyin, Google Gemini AI anında analiz edip MEB müfredatına uygun detaylı çözüm sunsun. 9 farklı ders için özel optimizasyon!
 
-✨ 🌟 **[GitHub](https://github.com/ogulcan-dev/yks-ai)**
-
 ## 🖼️ Özellikler
 
 - **📸 Sadece Görsel**: Metin yazmaya gerek yok, sadece soru görselini yükle
