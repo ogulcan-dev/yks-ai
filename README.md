@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YKS Görsel Soru Çözüm AI'sı 📸✨
 
-## Getting Started
+**Sadece görsel yükle, AI çözsün!** MEB müfredatına uygun YKS soru çözüm asistanı. Görsel yükleme ile tamamen otomatik çözüm alma sistemi.
 
-First, run the development server:
+## 🖼️ Özellikler
 
+- **📸 Sadece Görsel**: Metin yazmaya gerek yok, sadece soru görselini yükle
+- **🤖 100% Otomatik**: AI görseli okur, analiz eder ve çözer
+- **9 Ders Desteği**: Matematik, Fizik, Kimya, Biyoloji, Türkçe, Tarih, Coğrafya, Felsefe, İngilizce
+- **🧠 Çoklu AI Desteği**: 
+  - **Gemini**: Google'ın güçlü görsel modeli (ücretsiz)
+  - **Claude**: Anthropic'in güçlü dil modeli
+  - **GPT-4V**: OpenAI'nin görsel destekli modeli
+  - **Ollama**: Yerel AI modelleri desteği
+- **💾 Önbellek Sistemi**: Hızlı yanıt için akıllı cache
+- **MEB Müfredatı Uyumlu**: Her ders için özel analiz
+- **Demo Modu**: API key olmadan test edebilme
+- **Modern UI**: Drag & drop ile kolay yükleme
+
+## 🚀 Kurulum
+
+1. **Projeyi klonlayın:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/yks-ai.git
+cd yks-soru-cozum
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Bağımlılıkları yükleyin:**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. **Environment dosyasını oluşturun:**
+```bash
+cp .env.local.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. **AI API Anahtarlarını Ekleyin (opsiyonel):**
+- **Gemini (Ücretsiz)**: [Google AI Studio](https://makersuite.google.com/app/apikey)
+- **Claude**: [Anthropic Console](https://console.anthropic.com/)
+- **GPT-4V**: [OpenAI Platform](https://platform.openai.com/)
+- **Ollama**: [Ollama Kurulum](https://ollama.ai/)
 
-## Learn More
+`.env.local` dosyasına API anahtarlarını ekleyin:
+```env
+# Gemini (Zorunlu)
+GEMINI_API_KEY=your_key_here
 
-To learn more about Next.js, take a look at the following resources:
+# Claude (Opsiyonel)
+ANTHROPIC_API_KEY=your_key_here
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# OpenAI (Opsiyonel)
+OPENAI_API_KEY=your_key_here
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Ollama (Opsiyonel - Yerel Model)
+OLLAMA_ENABLED=true
+OLLAMA_HOST=http://127.0.0.1:11434
 
-## Deploy on Vercel
+# Cache Ayarları
+CACHE_ENABLED=true
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Geliştirme sunucusunu başlatın:**
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🆓 Demo Modu
+
+API key olmadan da uygulamayı test edebilirsiniz! Demo modunda:
+- Gerçekçi görsel analiz şablonları
+- Her ders için özel format
+- API key gerektirmez
+
+## 🤖 AI Model Desteği
+
+### Gemini (Varsayılan)
+- **🆓 Ücretsiz tier** - Aylık 60 istek bedava
+- **👁️ Görsel işleme** - Soru görsellerini mükemmel okur
+- **🇹🇷 Türkçe desteği** - Türkçe sorularda harika
+- **⚡ Hızlı** - Gemini 1.5 Pro modeli
+
+### Claude
+- **💪 Güçlü analiz** - Detaylı çözümler
+- **📚 Geniş bilgi** - Akademik sorularda başarılı
+- **🎯 Doğruluk** - Yüksek doğruluk oranı
+
+### GPT-4V
+- **🔍 Görsel anlama** - Karmaşık görselleri analiz eder
+- **🧮 Matematiksel** - Formül ve denklemlerde başarılı
+- **📊 Grafikler** - Grafik ve şemaları iyi yorumlar
+
+### Ollama
+- **🏠 Yerel çalışma** - İnternet bağlantısı gerektirmez
+- **🔒 Gizlilik** - Veriler cihazınızda kalır
+- **💰 Ücretsiz** - Açık kaynak modeller
+
+## 📱 Kullanım
+
+1. **🎯 Ders Seçin**: 9 farklı dersten birini seçin
+2. **🤖 Model Seçin**: Tercih ettiğiniz AI modelini seçin
+3. **📸 Görsel Yükleyin**: Soru görselini drag & drop ile yükleyin
+4. **🚀 Çöz**: "Çöz" butonuna basın
+5. **📖 Sonucu İnceleyin**: Detaylı, adım adım çözümü görün
+
+## 🛠️ Teknolojiler
+
+- **Frontend**: Next.js 15, React 19, TypeScript
+- **UI**: Shadcn/UI, Tailwind CSS
+- **AI**: 
+  - Google Gemini 1.5 Pro
+  - Anthropic Claude
+  - OpenAI GPT-4V
+  - Ollama (Yerel)
+- **Cache**: Custom MCP Cache System
+- **File Upload**: React Dropzone
+- **Styling**: Tailwind CSS v4
+
+## 📸 Desteklenen Görsel Türleri
+
+- **PNG, JPG, JPEG** formatları
+- **Matematik soruları**: Denklemler, grafikler, geometri
+- **Fizik soruları**: Şemalar, devre diyagramları, grafikler
+- **Kimya soruları**: Molekül yapıları, reaksiyon denklemleri
+- **Diğer dersler**: Metin soruları, şemalar, haritalar
+
+## 🔧 Geliştirme
+
+### Yeni Ders Ekleme
+1. `src/app/api/solve-mcp/route.ts` dosyasında `generateSolutionPrompt` fonksiyonuna yeni ders ekleyin
+2. `generateDemoSolution` fonksiyonuna demo çözüm ekleyin
+3. Frontend'de ders seçeneklerine ekleyin
+
+### Yeni Model Ekleme
+1. `src/lib/ai/mcp-service.ts` dosyasında yeni model konfigürasyonu ekleyin
+2. Model için özel prompt optimizasyonları ekleyin
+3. Frontend'de model seçeneklerine ekleyin
+
+### Prompt Optimizasyonu
+- Her ders için özel prompt'lar `generateSolutionPrompt` fonksiyonunda
+- Görsel analizi için detaylı talimatlar
+- MEB müfredatına uygun format
+
+## 📄 Lisans
+
+MIT License - Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
+## 🤝 Katkıda Bulunma
+
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push yapın (`git push origin feature/amazing-feature`)
+5. Pull Request açın
+
+## 📞 İletişim
+
+- Sorularınız için [issue açın](../../issues)
+- Önerileriniz için [pull request gönderin](../../pulls)
+- Güvenlik bildirimleri için [security.md](SECURITY.md) dosyasına bakın
+
+---
+
+**🎓 Eğitim Amaçlı**: Bu proje YKS'ye hazırlanan öğrencilerin çalışmalarına destek olmak için tasarlanmıştır. Gerçek sınavlarda kullanım kurallarına uygun hareket edin.
+
+**📸 Görsel Güvenlik**: Yüklenen görseller sadece analiz için kullanılır, saklanmaz.
+
+**🔒 Veri Gizliliği**: Tüm işlemler tarayıcınızda gerçekleşir, verileriniz bizimle paylaşılmaz.
