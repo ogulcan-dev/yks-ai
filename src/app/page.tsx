@@ -350,7 +350,7 @@ export default function LandingPage() {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p className="mb-2">© 2024 YKS Görsel AI - MEB müfredatına uygun eğitim desteği</p>
+            <p className="mb-2">© 2025 YKS Görsel AI - MEB müfredatına uygun eğitim desteği</p>
             <p className="flex items-center justify-center gap-2">
               <Sparkles className="h-4 w-4" />
               <span>Google Gemini AI ile güçlendirilmiştir</span>
