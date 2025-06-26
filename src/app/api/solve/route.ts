@@ -9,8 +9,8 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
     const image = formData.get('image') as File | null
-    const subject = formData.get('subject') as string
-    const examType = (formData.get('examType') as ExamType) || 'TYT'
+    const userMessage = formData.get('message') as string | null
+    const contextData = formData.get('context') as string | null
 
     if (!image) {
       return NextResponse.json(
@@ -19,20 +19,27 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!subject) {
-      return NextResponse.json(
-        { error: 'Lütfen ders seçin.' },
-        { status: 400 }
-      )
+    // Context'i parse et
+    let chatContext: any[] = []
+    if (contextData) {
+      try {
+        chatContext = JSON.parse(contextData)
+      } catch (e) {
+        console.warn('Context parse edilemedi:', e)
+      }
     }
+
+    // Chat modu mu yoksa ilk çözüm mü?
+    const isChatMode = !!userMessage && chatContext.length > 0
 
     const isDemoMode = !hasValidAPIKey()
     
     if (isDemoMode) {
-      const demoSolution = generateDemoSolution(subject, examType)
+      const demoSolution = generateDemoSolution(isChatMode, userMessage)
       return NextResponse.json({ 
         solution: demoSolution,
-        examType,
+        response: demoSolution,
+        isChatMode,
         isDemoMode: true
       })
     }
@@ -41,11 +48,12 @@ export async function POST(request: NextRequest) {
     const base64Image = Buffer.from(imageBuffer).toString('base64')
     const mimeType = image.type || 'image/jpeg'
 
-    const solution = await solveWithGemini(base64Image, mimeType, subject, examType)
+    const solution = await solveWithGemini(base64Image, mimeType, isChatMode, userMessage, chatContext)
 
     return NextResponse.json({ 
       solution,
-      examType,
+      response: solution,
+      isChatMode,
       isDemoMode: false
     })
 
@@ -62,9 +70,21 @@ function hasValidAPIKey(): boolean {
   return !!(process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key_here')
 }
 
-async function solveWithGemini(base64Image: string, mimeType: string, subject: string, examType: ExamType): Promise<string> {
+async function solveWithGemini(
+  base64Image: string, 
+  mimeType: string, 
+  isChatMode: boolean, 
+  userMessage: string | null, 
+  chatContext: any[]
+): Promise<string> {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" })
-  const prompt = examType === 'TYT' ? generateTYTPrompt(subject) : generateAYTPrompt(subject)
+  
+  let prompt: string
+  if (isChatMode && userMessage) {
+    prompt = generateChatPrompt(userMessage, chatContext)
+  } else {
+    prompt = generateAutoSolvePrompt()
+  }
 
   const result = await model.generateContent([
     prompt,
@@ -117,27 +137,82 @@ function generateAYTPrompt(subject: string): string {
 6. AYT Stratejik İpuçları`
 }
 
-function generateDemoSolution(subject: string, examType: ExamType): string {
-  return `**${examType} ${subject.toUpperCase()} DEMO ÇÖZÜM**
+function generateChatPrompt(userMessage: string, chatContext: any[]): string {
+  const contextSummary = chatContext.length > 0 
+    ? `\n\nÖnceki konuşma özeti: ${chatContext.slice(-3).map(m => `${m.role}: ${m.content.substring(0, 100)}`).join('\n')}`
+    : ''
+
+  return `Sen uzman bir YKS öğretmenisin. Öğrenci soruyla ilgili "${userMessage}" diye soruyor.
+
+${contextSummary}
+
+Görseldeki soruya odaklanarak öğrencinin isteğini yerine getir:
+- Eğer açıklama istiyorsa, detaylı açıkla
+- Eğer tekrar çözüm istiyorsa, farklı yöntemle çöz
+- Eğer anlamadığı kısım varsa, o kısmı basitleştir
+- Eğer benzer soru istiyorsa, benzer örnekler ver
+
+Açık, anlaşılır ve öğretici bir dille yanıtla.`
+}
+
+function generateAutoSolvePrompt(): string {
+  return `Sen uzman bir YKS öğretmenisin. Görseldeki soruyu analiz et ve çöz.
+
+**Görevlerin:**
+1. Önce sorunun hangi ders ve konu olduğunu belirle
+2. Sınav türünü (TYT/AYT) ve zorluk seviyesini tahmin et
+3. Soruyu adım adım çöz
+4. Çözümü anlaşılır şekilde açıkla
+
+**Çözüm formatı:**
+1. **Ders ve Konu:** [Otomatik algıladığın ders ve konu]
+2. **Sınav Türü:** [TYT/AYT]
+3. **Zorluk:** [Kolay/Orta/Zor]
+4. **Çözüm Adımları:** [Detaylı çözüm]
+5. **Sonuç:** [Final cevap]
+6. **İpuçları:** [Bu tür sorular için genel tavsiyeler]
+
+Açık, anlaşılır ve öğretici bir dille açıkla.`
+}
+
+function generateDemoSolution(isChatMode: boolean, userMessage: string | null): string {
+  if (isChatMode && userMessage) {
+    return `**💬 DEMO CHAT MODU**
+
+📝 **Kullanıcı Sorusu:** ${userMessage}
+
+🤖 **AI Yanıtı:**
+Bu demo modda çalışıyor. Gerçek chat deneyimi için API anahtarı gerekli.
+
+"${userMessage}" sorunuzla ilgili detaylı açıklama burada olacak.
+
+**🔧 Kurulum:**
+1. Google AI Studio'dan ücretsiz API key alın
+2. .env.local dosyasına ekleyin: \`GEMINI_API_KEY=your_api_key_here\`
+
+**Model:** Google Gemini 1.5 Flash`
+  }
+
+  return `**🎯 DEMO MODU - OTOMATIK SORU ÇÖZÜM**
 
 📚 Google Gemini AI ile çözüm yapılacak.
 
-**Soru Türü**: ${examType} ${subject} 
-**Seviye**: ${examType === 'TYT' ? 'Temel Yeterlilik' : 'Alan Yeterlilik'}
 **Model**: Google Gemini 1.5 Flash
+**Özellik**: Otomatik ders/konu algılama
 
 **💡 Gerçek Çözüm İçin:**
-- Google AI Studio'dan ücretsiz Gemini API key alın (aylık 15 istek ücretsiz)
+- Google AI Studio'dan ücretsiz Gemini API key alın
 
-**⚡ Model Özellikleri:**
-${examType === 'TYT' 
-  ? '- Hızlı ve pratik çözümler\n- Temel kavram odaklı\n- Görsel işleme uzmanı'
-  : '- Detaylı ve kapsamlı analiz\n- İleri düzey yaklaşım\n- Çoklu çözüm stratejisi'}
+**⚡ Yeni Özellikler:**
+- Ders ve sınav türü otomatik algılama
+- Chat desteği (soru sorabilirsiniz)
+- Görsel işleme uzmanı
+- Adım adım çözüm
 
-**🎯 ${examType} İpuçları:**
-${examType === 'TYT'
-  ? '- Zaman yönetimi kritik\n- Temel kavramlara odaklan\n- Pratik çözümleri öğren'
-  : '- Detaylı analiz yap\n- Konular arası bağlantı kur\n- Farklı çözüm yollarını dene'}`
+**🎯 Kullanım:**
+1. Soru görseli yükleyin → Otomatik çözüm
+2. Çözüm sonrası chat ile sorular sorun
+3. "Anlamadım", "Tekrar çöz" gibi isteklerde bulunun`
 }
 
 export async function GET() {
