@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Camera, HelpCircle, BookOpen, Lightbulb, AlertCircle, CheckCircle, Home, MessageCircle, Menu, X, Search } from 'lucide-react'
 import { PageLoader } from '@/components/ui/loading-screen'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export default function HelpPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -26,15 +27,15 @@ export default function HelpPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <Camera className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">YKS Görsel AI</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">YKS Görsel AI</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-4">
@@ -48,6 +49,7 @@ export default function HelpPage() {
                   Hakkımızda
                 </Button>
               </Link>
+              <ThemeToggle />
               <Link href="/">
                 <Button variant="outline" size="sm" className="hover:scale-105 transition-all duration-300">
                   <Home className="h-4 w-4 mr-2" />
@@ -68,15 +70,18 @@ export default function HelpPage() {
           </div>
 
           {mobileMenuOpen && (
-            <div className="md:hidden border-t bg-white/95 backdrop-blur-md">
+            <div className="md:hidden border-t bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
               <div className="px-2 pt-2 pb-3 space-y-1">
-                <Link href="/solve" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                <Link href="/solve" className="block px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
                   Soru Çöz
                 </Link>
-                <Link href="/about" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                <Link href="/about" className="block px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
                   Hakkımızda
                 </Link>
-                <Link href="/" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                <div className="px-3 py-2">
+                  <ThemeToggle />
+                </div>
+                <Link href="/" className="block px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
                   Ana Sayfa
                 </Link>
               </div>
@@ -87,22 +92,22 @@ export default function HelpPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             🆘 Yardım Merkezi
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
             YKS Görsel AI kullanımı hakkında sorularınızın cevapları burada. 
             Eğer aradığınızı bulamazsanız bizimle iletişime geçin!
           </p>
 
           <div className="max-w-lg mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
             <input
               type="text"
               placeholder="Yardım konularında ara..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
             />
           </div>
         </div>
@@ -110,37 +115,37 @@ export default function HelpPage() {
         <section className="mb-16 animate-slide-up">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link href="/solve">
-              <Card className="border-2 hover:border-blue-300 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-lg">
+              <Card className="border-2 hover:border-blue-300 dark:hover:border-blue-400 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-lg dark:bg-gray-800 dark:border-gray-600">
                 <CardContent className="p-6 text-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                     <Camera className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Hemen Başla</h3>
-                  <p className="text-gray-600 text-sm">Soru görselini yükle ve çözümü al</p>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Hemen Başla</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">Soru görselini yükle ve çözümü al</p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link href="#tutorial">
-              <Card className="border-2 hover:border-blue-300 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-lg">
+              <Card className="border-2 hover:border-blue-300 dark:hover:border-blue-400 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-lg dark:bg-gray-800 dark:border-gray-600">
                 <CardContent className="p-6 text-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                     <BookOpen className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Öğretici Rehber</h3>
-                  <p className="text-gray-600 text-sm">Adım adım kullanım rehberi</p>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Öğretici Rehber</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">Adım adım kullanım rehberi</p>
                 </CardContent>
               </Card>
             </Link>
 
             <Link href="#contact">
-              <Card className="border-2 hover:border-blue-300 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-lg">
+              <Card className="border-2 hover:border-blue-300 dark:hover:border-blue-400 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-lg dark:bg-gray-800 dark:border-gray-600">
                 <CardContent className="p-6 text-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                     <MessageCircle className="h-6 w-6 text-white" onClick={() => window.open('https://github.com/ogulcan-dev/yks-ai/issues', '_blank')}/>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">İletişim</h3>
-                  <p className="text-gray-600 text-sm">Doğrudan bizimle konuş</p>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">İletişim</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm">Doğrudan bizimle konuş</p>
                 </CardContent>
               </Card>
             </Link>
@@ -149,10 +154,10 @@ export default function HelpPage() {
 
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               ❓ Sık Sorulan Sorular
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               En çok merak edilen konular
             </p>
           </div>
@@ -161,23 +166,23 @@ export default function HelpPage() {
             {faqs.map((faq, index) => (
               <Card 
                 key={index} 
-                className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group"
+                className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group dark:bg-gray-800"
               >
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg">
+                  <CardTitle className="flex items-center gap-3 text-lg dark:text-white">
                     <HelpCircle className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform duration-300" />
                     {faq.question}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
                   {faq.tags && (
                     <div className="flex flex-wrap gap-2 mt-3">
                       {faq.tags.map((tag, tagIndex) => (
                         <Badge 
                           key={tagIndex} 
                           variant="secondary" 
-                          className="text-xs hover:scale-105 transition-transform duration-200"
+                          className="text-xs hover:scale-105 transition-transform duration-200 dark:bg-gray-700 dark:text-gray-200"
                         >
                           {tag}
                         </Badge>
@@ -191,13 +196,13 @@ export default function HelpPage() {
         </section>
 
         <section id="tutorial" className="mb-16">
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800">
             <CardHeader className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
                 <BookOpen className="h-8 w-8 text-white" />
               </div>
-              <CardTitle className="text-2xl">📚 Kullanım Rehberi</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-2xl dark:text-white">📚 Kullanım Rehberi</CardTitle>
+              <CardDescription className="dark:text-gray-400">
                 Adım adım nasıl kullanacağını öğren
               </CardDescription>
             </CardHeader>
@@ -208,8 +213,8 @@ export default function HelpPage() {
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                       <span className="text-white font-bold">{index + 1}</span>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{step.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{step.description}</p>
                     <div className="mt-3 text-2xl group-hover:animate-bounce">{step.emoji}</div>
                   </div>
                 ))}
@@ -220,10 +225,10 @@ export default function HelpPage() {
 
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               🔧 Sorun Giderme
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Yaşayabileceğiniz sorunlar ve çözümleri
             </p>
           </div>
@@ -232,23 +237,23 @@ export default function HelpPage() {
             {troubleshooting.map((issue, index) => (
               <Card 
                 key={index} 
-                className="border-l-4 border-l-red-500 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group"
+                className="border-l-4 border-l-red-500 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group dark:bg-gray-800"
               >
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg">
+                  <CardTitle className="flex items-center gap-3 text-lg dark:text-white">
                     <AlertCircle className="h-5 w-5 text-red-600 group-hover:scale-110 transition-transform duration-300" />
                     {issue.problem}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    <p className="text-gray-600">{issue.description}</p>
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                    <p className="text-gray-600 dark:text-gray-300">{issue.description}</p>
+                    <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg p-3">
                       <div className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="font-medium text-green-800 mb-1">Çözüm:</p>
-                          <p className="text-green-700 text-sm">{issue.solution}</p>
+                          <p className="font-medium text-green-800 dark:text-green-300 mb-1">Çözüm:</p>
+                          <p className="text-green-700 dark:text-green-400 text-sm">{issue.solution}</p>
                         </div>
                       </div>
                     </div>
@@ -260,24 +265,24 @@ export default function HelpPage() {
         </section>
 
         <section className="mb-16">
-          <Card className="border-0 shadow-lg bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-l-amber-500 hover:shadow-xl transition-shadow duration-300">
+          <Card className="border-0 shadow-lg bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-l-4 border-l-amber-500 hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl">
-                <Lightbulb className="h-6 w-6 text-amber-600 animate-pulse" />
+              <CardTitle className="flex items-center gap-3 text-xl dark:text-white">
+                <Lightbulb className="h-6 w-6 text-amber-600 dark:text-amber-400 animate-pulse" />
                 💡 İpuçları & Öneriler
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="dark:text-gray-400">
                 Platform kullanımını optimize etmek için öneriler
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {tips.map((tip, index) => (
-                  <div key={index} className="flex items-start gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div key={index} className="flex items-start gap-3 p-3 bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
                     <div className="text-lg">{tip.emoji}</div>
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-1">{tip.title}</h4>
-                      <p className="text-sm text-gray-600">{tip.description}</p>
+                      <h4 className="font-medium text-gray-900 dark:text-white mb-1">{tip.title}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">{tip.description}</p>
                     </div>
                   </div>
                 ))}
@@ -287,20 +292,20 @@ export default function HelpPage() {
         </section>
 
         <section id="contact" className="text-center">
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800">
             <CardContent className="p-8">
               <div className="mb-6">
                 <MessageCircle className="h-16 w-16 text-blue-500 mx-auto mb-4 animate-bounce" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 💬 Hâlâ Yardıma İhtiyacınız Var mı?
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
                 Sorunuz burada yanıtlanmadıysa, bizimle doğrudan iletişime geçebilirsiniz. 
                 Teknik ekibimiz size yardımcı olmak için burada!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300">
+                <Button size="lg" className="px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300 text-white">
                   <MessageCircle className="mr-2 h-5 w-5" />
                   💌 İletişime Geç
                 </Button>
@@ -311,18 +316,18 @@ export default function HelpPage() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 pt-8 border-t dark:border-gray-700">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">24/7</div>
-                  <div className="text-sm text-gray-500">Destek Saatleri</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">Destek Saatleri</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">&lt;1 saat</div>
-                  <div className="text-sm text-gray-500">Ortalama Yanıt Süresi</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">Ortalama Yanıt Süresi</div>
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-purple-600">%98</div>
-                  <div className="text-sm text-gray-500">Çözüm Oranı</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">Çözüm Oranı</div>
                 </div>
               </div>
             </CardContent>

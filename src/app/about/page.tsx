@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Camera, Code, Target, Users, Zap, Home, Github, Heart, Menu, X } from 'lucide-react'
 import { PageLoader } from '@/components/ui/loading-screen'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export default function AboutPage() {
   const [isLoading, setIsLoading] = useState(true)
@@ -25,15 +26,15 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <Camera className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">YKS Görsel AI</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">YKS Görsel AI</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-4">
@@ -47,6 +48,7 @@ export default function AboutPage() {
                   Yardım
                 </Button>
               </Link>
+              <ThemeToggle />
               <Link href="/">
                 <Button variant="outline" size="sm" className="hover:scale-105 transition-all duration-300">
                   <Home className="h-4 w-4 mr-2" />
@@ -67,15 +69,18 @@ export default function AboutPage() {
           </div>
 
           {mobileMenuOpen && (
-            <div className="md:hidden border-t bg-white/95 backdrop-blur-md">
+            <div className="md:hidden border-t bg-white/95 dark:bg-gray-900/95 backdrop-blur-md">
               <div className="px-2 pt-2 pb-3 space-y-1">
-                <Link href="/solve" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                <Link href="/solve" className="block px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
                   Soru Çöz
                 </Link>
-                <Link href="/help" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                <Link href="/help" className="block px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
                   Yardım
                 </Link>
-                <Link href="/" className="block px-3 py-2 text-gray-600 hover:text-gray-900">
+                <div className="px-3 py-2">
+                  <ThemeToggle />
+                </div>
+                <Link href="/" className="block px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
                   Ana Sayfa
                 </Link>
               </div>
@@ -86,28 +91,28 @@ export default function AboutPage() {
 
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             🌟 Hakkımızda
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             YKS öğrencileri için AI destekli görsel soru çözüm platformu. 
             Teknoloji ile eğitimi birleştirerek öğrenmeyi kolaylaştırıyoruz.
           </p>
         </div>
 
         <section className="mb-16 animate-slide-up">
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+          <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 dark:bg-gray-800">
             <CardHeader className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300">
                 <Target className="h-8 w-8 text-white" />
               </div>
-              <CardTitle className="text-2xl">Misyonumuz</CardTitle>
+              <CardTitle className="text-2xl dark:text-white">Misyonumuz</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                 Her öğrencinin AI&apos;ın gücünden faydalanarak daha etkili çalışabilmesi, 
                 soru çözme sürecini hızlandırması ve YKS&apos;de başarılı olması için 
-                <strong className="text-blue-600"> ücretsiz ve erişilebilir</strong> bir platform sunmak.
+                <strong className="text-blue-600 dark:text-blue-400"> ücretsiz ve erişilebilir</strong> bir platform sunmak.
               </p>
             </CardContent>
           </Card>
@@ -115,10 +120,10 @@ export default function AboutPage() {
 
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               ⚡ Teknoloji Yığını
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               En modern teknolojilerle geliştirildi
             </p>
           </div>
@@ -127,7 +132,7 @@ export default function AboutPage() {
             {technologies.map((tech, index) => (
               <Card 
                 key={index} 
-                className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group"
+                className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group dark:bg-gray-800"
               >
                 <CardHeader>
                   <div className="flex items-center gap-3">
@@ -135,13 +140,13 @@ export default function AboutPage() {
                       {tech.icon}
                     </div>
                     <div>
-                      <CardTitle className="text-lg">{tech.name}</CardTitle>
-                      <CardDescription>{tech.category}</CardDescription>
+                      <CardTitle className="text-lg dark:text-white">{tech.name}</CardTitle>
+                      <CardDescription className="dark:text-gray-400">{tech.category}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-gray-600">{tech.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-300">{tech.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -150,10 +155,10 @@ export default function AboutPage() {
 
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               🔥 Neler Yapabilir?
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Platform özelliklerinin detaylı incelemesi
             </p>
           </div>
@@ -162,18 +167,18 @@ export default function AboutPage() {
             {capabilities.map((capability, index) => (
               <Card 
                 key={index} 
-                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+                className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group dark:bg-gray-800"
               >
                 <CardHeader>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <capability.icon className="h-5 w-5 text-white" />
                     </div>
-                    <CardTitle className="text-xl">{capability.title}</CardTitle>
+                    <CardTitle className="text-xl dark:text-white">{capability.title}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-600 mb-4 leading-relaxed">
+                  <CardDescription className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                     {capability.description}
                   </CardDescription>
                   <div className="flex flex-wrap gap-2">
@@ -181,7 +186,7 @@ export default function AboutPage() {
                       <Badge 
                         key={tagIndex} 
                         variant="secondary" 
-                        className="text-xs hover:scale-105 transition-transform duration-200"
+                        className="text-xs hover:scale-105 transition-transform duration-200 dark:bg-gray-700 dark:text-gray-200"
                       >
                         {tag}
                       </Badge>
@@ -214,10 +219,10 @@ export default function AboutPage() {
 
         <section className="mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               🚀 Geliştirme Süreci
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Proje nasıl hayata geçti?
             </p>
           </div>
@@ -226,7 +231,7 @@ export default function AboutPage() {
             {timeline.map((item, index) => (
               <Card 
                 key={index} 
-                className="border-l-4 border-l-blue-500 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group"
+                className="border-l-4 border-l-blue-500 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 group dark:bg-gray-800"
               >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
@@ -234,9 +239,9 @@ export default function AboutPage() {
                       <span className="text-white text-sm font-bold">{index + 1}</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 mb-2">{item.description}</p>
-                      <Badge variant="outline">{item.duration}</Badge>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{item.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-300 mb-2">{item.description}</p>
+                      <Badge variant="outline" className="dark:border-gray-600 dark:text-gray-300">{item.duration}</Badge>
                     </div>
                   </div>
                 </CardContent>
@@ -246,20 +251,20 @@ export default function AboutPage() {
         </section>
 
         <section className="text-center">
-          <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300 dark:bg-gray-800">
             <CardContent className="p-8">
               <div className="mb-6">
                 <Heart className="h-16 w-16 text-red-500 mx-auto mb-4 animate-pulse" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 🤝 Katkıda Bulunun
               </h2>
-              <p className="text-lg text-gray-600 mb-6">
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
                 Bu proje açık kaynak kodludur. Geliştirmeye katkıda bulunmak, 
                 hata bildirmek veya yeni özellik önermek isterseniz bize ulaşın!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300" onClick={() => window.open('https://github.com/ogulcan-dev/yks-ai', '_blank')}>
+                <Button size="lg" className="px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 transition-all duration-300 text-white" onClick={() => window.open('https://github.com/ogulcan-dev/yks-ai', '_blank')}>
                   <Github className="mr-2 h-5 w-5" />
                   GitHub&apos;da Görüntüle
                 </Button>

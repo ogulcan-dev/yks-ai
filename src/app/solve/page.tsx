@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Camera, Upload, Brain, Home, Sparkles, Loader2, Zap, Shield, Palette, Server, Send, Image as ImageIcon, RefreshCw } from 'lucide-react'
 import { useDropzone } from 'react-dropzone'
 import { marked } from 'marked'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 type ExamType = 'TYT' | 'AYT'
 type AIModel = 'gemini' | 'claude' | 'gpt' | 'mistral' | 'cohere' | 'ollama' | 'auto'
@@ -219,16 +220,16 @@ export default function SolvePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-900/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <Brain className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">YKS AI Asistan</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">YKS AI Asistan</span>
             </Link>
             <div className="flex items-center gap-4">
               <Button
@@ -240,6 +241,7 @@ export default function SolvePage() {
                 <Shield className="h-4 w-4" />
                 {useMCP ? 'MCP Aktif' : 'MCP Kapalı'}
               </Button>
+              <ThemeToggle />
               <Link href="/">
                 <Button variant="outline" size="sm">
                   <Home className="h-4 w-4 mr-2" />
@@ -255,7 +257,7 @@ export default function SolvePage() {
         <div className="flex-1 overflow-y-auto mb-6 space-y-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 pr-4">
                     {isTyping && (
             <div className="flex justify-start mb-4">
-              <div className="bg-white text-gray-900 shadow-lg rounded-2xl p-4 border border-gray-100">
+              <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg rounded-2xl p-4 border border-gray-100 dark:border-gray-700">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
                   <div className="w-2 h-2 bg-blue-600 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
@@ -271,7 +273,7 @@ export default function SolvePage() {
             >
               <div className={`max-w-[80%] rounded-2xl p-6 ${
                 message.role === 'assistant'
-                  ? 'bg-white text-gray-900 shadow-lg hover:shadow-xl transition-all border border-gray-100'
+                  ? 'bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-lg hover:shadow-xl transition-all border border-gray-100 dark:border-gray-700'
                   : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all'
               } transform hover:scale-[1.01]`}>
                 {message.imageUrl && (
@@ -294,12 +296,12 @@ export default function SolvePage() {
 
         {/* AI Model Seçimi */}
         {hasQuestionImage && (
-          <Card className="mb-6 bg-white/90 backdrop-blur-md shadow-lg hover:shadow-xl transition-all border border-gray-100/20">
+          <Card className="mb-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-lg hover:shadow-xl transition-all border border-gray-100/20 dark:border-gray-700/20">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Brain className="h-5 w-5 text-blue-600" />
-                  <span className="text-sm font-medium">AI Modeli:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">AI Modeli:</span>
                 </div>
                 <Select value={selectedModel} onValueChange={(value: string) => setSelectedModel(value as AIModel)}>
                   <SelectTrigger className="w-48">
@@ -336,14 +338,14 @@ export default function SolvePage() {
               {...getRootProps()}
               className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all
                 ${isDragActive 
-                  ? 'border-blue-500 bg-blue-50/50 scale-[1.02] shadow-lg' 
-                  : 'border-gray-300 hover:border-blue-400 hover:scale-[1.01] hover:bg-blue-50/30'
+                  ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20 scale-[1.02] shadow-lg' 
+                  : 'border-gray-300 dark:border-gray-600 hover:border-blue-400 hover:scale-[1.01] hover:bg-blue-50/30 dark:hover:bg-blue-900/10'
                 } backdrop-blur-sm`}
             >
               <input {...getInputProps()} />
               <div className="flex items-center justify-center gap-2">
-                <ImageIcon className={`h-5 w-5 ${isDragActive ? 'text-blue-500' : 'text-gray-400'} transition-colors`} />
-                <span className={`text-sm ${isDragActive ? 'text-blue-600' : 'text-gray-600'} transition-colors`}>
+                <ImageIcon className={`h-5 w-5 ${isDragActive ? 'text-blue-500' : 'text-gray-400 dark:text-gray-500'} transition-colors`} />
+                <span className={`text-sm ${isDragActive ? 'text-blue-600' : 'text-gray-600 dark:text-gray-400'} transition-colors`}>
                   {previewUrl ? 'Görseli değiştir' : 'Soru görseli yükle'}
                 </span>
               </div>
