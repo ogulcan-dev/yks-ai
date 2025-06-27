@@ -20,6 +20,7 @@
 - [x] Loading states
 - [x] Error handling
 - [x] Modern card tasarımları
+- [x] Karanlık mod
 
 ---
 
@@ -28,7 +29,6 @@
 ### Kullanıcı Deneyimi
 - [ ] **Soru geçmişi kaydetme** - LocalStorage ile
 - [ ] **Favori sorular** - Önemli soruları işaretleme
-- [ ] **Karanlık mod** - Dark/Light theme toggle
 - [ ] **Sesli okuma** - Text-to-speech çözümler için
 - [ ] **Kopyalama butonu** - Çözümleri kolay kopyalama
 - [ ] **PDF export** - Çözümleri PDF olarak indirme
